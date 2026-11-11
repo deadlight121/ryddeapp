@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Logg inn – Ryddeapp</title>
+  <!-- Fonter: Caveat Brush, Fraunces og Nunito Sans fra Google Fonts (SIL Open Font License) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="login.css">
+</head>
+<body class="login-side">
+  <main class="login">
+
+    <figure class="polaroid">
+      <div class="bilde">
+        <!-- Legg bildet av Freya i samme mappe og kall det freya.jpg -->
+        <img src="freya.jpg" alt="Freya, katten min" onerror="this.remove()">
+      </div>
+      <figcaption>Freya</figcaption>
+    </figure>
+
+    <h1>Ryddeapp</h1>
+    <p class="slagord">Freya passer på at du rydder.</p>
+
+    <form id="loginSkjema" novalidate>
+      <label for="brukernavn">Brukernavn</label>
+      <input id="brukernavn" type="text" autocomplete="username" required>
+
+      <label for="passord">Passord</label>
+      <input id="passord" type="password" autocomplete="current-password" required>
+
+      <p id="feil" class="feil" role="alert"></p>
+
+      <button class="knapp fylt" type="submit">Logg inn</button>
+    </form>
+
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>

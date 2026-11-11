@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="nb">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ryddeapp</title>
+  <!-- Fonter: Fraunces og Nunito Sans fra Google Fonts (SIL Open Font License) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <aside class="familie">
+      <h2>Familie</h2>
+      <ul id="familieliste"></ul>
+    </aside>
+
+    <main class="hoved">
+      <header class="topp">
+        <nav class="faner" aria-label="Status">
+          <button class="fane ledig aktiv" data-status="ledig">Ledig</button>
+          <button class="fane tatt" data-status="tatt">Tatt</button>
+          <button class="fane ferdig" data-status="ferdig">Ferdig</button>
+        </nav>
+        <div class="topp-knapper">
+          <button class="stat-knapp" id="apneStatistikk">Statistikk</button>
+          <button class="stat-knapp" id="loggUt">Logg ut</button>
+        </div>
+      </header>
+
+      <section id="oppgaveliste" class="oppgaver" aria-live="polite"></section>
+
+      <button class="ny" id="apneNy" aria-label="Ny oppgave">+</button>
+    </main>
+
+  </div>
+
+  <!-- Ny oppgave -->
+  <dialog id="nyDialog">
+    <h2>Ny oppgave</h2>
+    <label for="tittel">Hva skal gjøres?</label>
+    <input id="tittel" type="text" maxlength="60">
+    <fieldset>
+      <legend>Poeng</legend>
+      <div class="poengvalg">
+        <label><input type="radio" name="poeng" value="1" checked><span>1</span></label>
+        <label><input type="radio" name="poeng" value="3"><span>3</span></label>
+        <label><input type="radio" name="poeng" value="5"><span>5</span></label>
+        <label><input type="radio" name="poeng" value="10"><span>10</span></label>
+      </div>
+    </fieldset>
+    <div class="dialog-knapper">
+      <button class="knapp fylt" id="leggTil">Legg til</button>
+      <button class="knapp tekst" data-lukk>Avbryt</button>
+    </div>
+  </dialog>
+
+  <!-- Statistikk -->
+  <dialog id="statDialog">
+    <h2>Denne måneden</h2>
+    <div id="statListe"></div>
+    <div class="dialog-knapper">
+      <button class="knapp tekst" data-lukk>Lukk</button>
+    </div>
+  </dialog>
+
+  <script src="script.js"></script>
+</body>
+</html>

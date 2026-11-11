@@ -1,0 +1,248 @@
+/* ---------- Farger (endre her, resten følger med) ---------- */
+:root {
+  --bakgrunn: #F4F6F7;
+  --flate: #FFFFFF;
+  --linje: #D5DCE1;
+  --tekst: #1C2B36;
+  --tekst-dempet: #55656F;
+  --primaer: #2E5E8C;        /* dempet blå: knapper, aktiv fane, fokus */
+  --primaer-lys: #6F97BF;    /* dekor, f.eks. stripe på ledige kort */
+  --aksent: #E8B04A;         /* sennep: Tatt, +-knappen, valgt poeng */
+  --feil: #B3402E;
+
+  --ledig-bg: #DCE7F2;
+  --tatt-bg: #FAEBC8;
+  --ferdig-bg: #E6EAED;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+body {
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 16px;
+  color: var(--tekst);
+  background: var(--bakgrunn);
+  line-height: 1.4;
+}
+
+h1, h2, .poeng { font-family: "Fraunces", serif; }
+
+button { font: inherit; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--primaer); outline-offset: 2px; }
+
+/* ---------- Oppsett: familie til venstre, innhold til høyre ---------- */
+.app {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  max-width: 1000px;
+  min-height: 100vh;
+  margin: 0 auto;
+  border-left: 1.5px solid var(--linje);
+  border-right: 1.5px solid var(--linje);
+}
+
+.familie {
+  padding: 24px 16px;
+  border-right: 1.5px solid var(--linje);
+}
+.familie h2 { font-size: 28px; margin-bottom: 16px; }
+.familie ul { list-style: none; padding: 0; }
+
+.person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  margin-bottom: 4px;
+  border: 1.5px solid transparent;
+  border-radius: 10px;
+}
+.person.meg { border-color: var(--primaer); background: var(--flate); }
+.person .ball {
+  width: 36px; height: 36px; flex: none;
+  display: grid; place-items: center;
+  border-radius: 50%;
+  font-weight: 700;
+}
+.person .navn { flex: 1; font-weight: 600; }
+.person .poeng { font-size: 20px; font-weight: 700; color: var(--primaer); }
+.person small { font-family: "Nunito Sans", sans-serif; font-size: 14px; color: var(--tekst-dempet); font-weight: 400; }
+
+/* ---------- Topp: faner + statistikk ---------- */
+.hoved { padding: 24px; position: relative; }
+
+.topp {
+  display: flex;
+  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+.faner { display: flex; gap: 8px; flex: 1; }
+
+.fane {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 16px;
+  background: transparent;
+  color: var(--tekst-dempet);
+  border: 1.5px solid var(--linje);
+  border-radius: 10px;
+  font-weight: 600;
+}
+.fane.aktiv { color: var(--tekst); border-color: var(--tekst); }
+.fane.ledig.aktiv  { background: var(--primaer); border-color: var(--primaer); color: #fff; }
+.fane.tatt.aktiv   { background: var(--aksent); border-color: var(--aksent); }
+.fane.ferdig.aktiv { background: var(--ferdig-bg); border-color: var(--tekst-dempet); }
+
+.topp-knapper { display: flex; gap: 8px; }
+
+.stat-knapp {
+  min-height: 44px;
+  padding: 0 16px;
+  background: var(--flate);
+  border: 1.5px solid var(--tekst);
+  border-radius: 10px;
+  font-weight: 600;
+}
+
+/* ---------- Oppgavekort ---------- */
+.oppgaver { display: grid; gap: 12px; }
+
+.kort {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 8px 16px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--flate);
+  border: 1.5px solid var(--linje);
+  border-left: 5px solid var(--primaer-lys);
+  border-radius: 12px 12px 12px 4px;   /* som et hjørne på en lapp */
+}
+.kort.tatt   { border-left-color: var(--aksent); }
+.kort.ferdig { border-left-color: var(--linje); }
+.kort h3 { font-size: 18px; font-weight: 600; }
+.kort .info { font-size: 14px; color: var(--tekst-dempet); }
+.kort .poeng { font-size: 20px; font-weight: 700; color: var(--primaer); margin-right: 8px; }
+
+.status-tekst {
+  display: inline-block;
+  padding: 0 8px;
+  margin-right: 8px;
+  border-radius: 6px;
+  font-size: 14px;
+  color: var(--tekst);
+  background: var(--ledig-bg);
+}
+.tatt .status-tekst   { background: var(--tatt-bg); }
+.ferdig .status-tekst { background: var(--ferdig-bg); color: var(--tekst-dempet); }
+
+.handlinger { display: flex; align-items: center; gap: 8px; }
+
+.knapp {
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: 10px;
+  border: 1.5px solid var(--primaer);
+  background: transparent;
+  color: var(--primaer);
+  font-weight: 700;
+}
+.knapp.fylt { background: var(--primaer); color: #fff; }
+.knapp.tekst { border-color: transparent; color: var(--tekst-dempet); }
+.knapp:active, .fane:active, .ny:active { transform: translateY(2px); }
+
+.tom { padding: 32px 0; color: var(--tekst-dempet); text-align: center; }
+
+/* ---------- Ny-knapp ---------- */
+.ny {
+  position: sticky;
+  bottom: 24px;
+  margin: 24px 0 0 auto;
+  display: block;
+  width: 56px; height: 56px;
+  border: none;
+  border-radius: 50%;
+  background: var(--aksent);
+  color: var(--tekst);
+  font-size: 32px;
+  line-height: 1;
+}
+
+/* ---------- Dialoger ---------- */
+dialog {
+  width: min(92vw, 420px);
+  margin: auto;
+  padding: 24px;
+  background: var(--flate);
+  color: var(--tekst);
+  border: 1.5px solid var(--linje);
+  border-radius: 14px 14px 14px 4px;
+}
+dialog::backdrop { background: rgba(28, 43, 54, .5); }
+dialog h2 { font-size: 24px; margin-bottom: 16px; }
+dialog label { display: block; font-weight: 600; margin-bottom: 4px; }
+
+input[type="text"] {
+  width: 100%; min-height: 44px; padding: 0 12px;
+  background: var(--flate);
+  border: 1.5px solid var(--linje);
+  border-radius: 10px;
+  font: inherit; color: inherit;
+}
+input[type="text"]:focus { outline: none; border: 2px solid var(--primaer); }
+
+fieldset { border: none; padding: 0; margin: 16px 0 0; }
+legend { font-weight: 600; margin-bottom: 4px; }
+.poengvalg { display: flex; gap: 8px; }
+.poengvalg label { flex: 1; margin: 0; }
+.poengvalg input { position: absolute; opacity: 0; }
+.poengvalg span {
+  display: grid; place-items: center; min-height: 44px;
+  border: 1.5px solid var(--linje); border-radius: 10px;
+  font-family: "Fraunces", serif; font-weight: 700; font-size: 20px;
+  cursor: pointer;
+}
+.poengvalg input:checked + span { background: var(--aksent); border-color: var(--aksent); color: var(--tekst); }
+.poengvalg input:focus-visible + span { outline: 3px solid var(--primaer); outline-offset: 2px; }
+
+.dialog-knapper { display: flex; gap: 8px; margin-top: 24px; }
+
+.feil { color: var(--feil); font-size: 14px; margin-top: 4px; }
+
+/* Statistikk-stolper (ren CSS, bredden settes fra JavaScript) */
+.stolperad { margin-bottom: 16px; }
+.stolperad .topplinje { display: flex; justify-content: space-between; font-weight: 600; }
+.stolpe { height: 14px; margin-top: 4px; background: var(--ferdig-bg); border-radius: 4px; }
+.stolpe div { height: 100%; border-radius: 4px; }
+
+/* ---------- Mobil: familien blir en stripe øverst ---------- */
+@media (max-width: 700px) {
+  .app { display: block;
+    border: none; }
+
+  .familie {
+    padding: 12px 16px 8px;
+    border-right: none;
+    border-bottom: 1.5px solid var(--linje);
+  }
+  .familie h2 { display: none; }
+  .familie ul { display: flex; gap: 8px; overflow-x: auto; padding-bottom: 4px; }
+  .person { flex: none; flex-direction: column; gap: 2px; width: 76px; margin: 0; text-align: center; }
+  .person .navn { font-size: 14px; }
+
+  .hoved { padding: 16px; }
+  .topp { flex-wrap: wrap; }
+  .faner { flex-basis: 100%; order: 2; }
+  .topp-knapper { margin-left: auto; }
+
+  .kort { grid-template-columns: 1fr; }
+  .handlinger { justify-content: space-between; }
+  .knapp { flex: 1; }
+  .ny { position: fixed; right: 16px; bottom: 16px; margin: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
